@@ -1,17 +1,33 @@
 const { Post } = require("../models");
-
+// currentDate stands for precode for the year, month, day
+currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth(); + 1; // Since month have zero - indexed, we need to add 1 for the each month
+const day = currentDate.getDate();
+// adding year month date  to the show up on the home page first
+const formatDate = `${year}- ${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`; //   Year              Month       Date
+const currentDate = new Date(YYYY).toISOString(MM).slice(0, 19).replace
+// Hours Minutes Seconds
+('T', ' ');
 const postdata = [
   {
+    // help define the structures of post model titles, content, author, createdAt
+    // trying to put the date into the post for with the context
     title: "Enlighten yourself",
     post_text:
       "Calling somebody else fat won't make you any skinnier. Calling someone stupid doesn't make you any smarter. And ruining Regina George's life definitely didn't make me any happier. All you can do in life is try to solve the problem in front of you.",
     user_id: 1,
+    createdAt: new Date(),
+    const: year = currentDate.getFullYear(),
+    const: month = currentDate.getMonth() + 1,
+    const: day = currentDate.getDate(),
   },
   {
     title: "Sorry",
     post_text:
       "Gretchen, I'm sorry I laughed at you that time you got diarrhea at Barnes & Nobles.",
     user_id: 6,
+
   },
   {
     title: "Observation",
