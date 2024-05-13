@@ -85,4 +85,31 @@ if (process.env.DB_URL) {
   );
 }
 
+router.post('/api/signup', async (req, res) => {
+  try {
+    const dbUserData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      res.status(200).json(dbUserData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+// to help keep certain part of code or files away from users and only certain auththenticated or authorized personal can go
+// Import the authGuard middleware
+const authGuard = require('./authGuard');
+
+// Apply the authGuard middleware to a specific route
+router.get('/protected-route', authGuard, (req, res) => {
+  // This route is protected by the authGuard middleware
+  res.json({ message: 'You have access to this protected route.' });
+});
+
 module.exports = sequelize;
