@@ -14,5 +14,3 @@ const sequelize = new Sequelize(
 
 module.exports = sequelize;
 
-
-// we have to get the development to deployment

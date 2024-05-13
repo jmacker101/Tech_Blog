@@ -28,7 +28,7 @@ const sess = {
     // Express session will use cookies by default, but we can specify options for those cookies by adding a cookies property to our session options.
   cookie: {
         // maxAge sets the maximum age for the cookie to be valid. Here, the cookie (and session) will expire after one hour. The time should be given in milliseconds.
-    maxAge: 300000,
+    maxAge: 300000000000000000,
         // httpOnly tells express-session to only store session cookies when the protocol being used to connect to the server is HTTP.
     httpOnly: true,
         // secure tells express-session to only initialize session cookies when the protocol being used is HTTPS. Having this set to true, and running a server without encryption will result in the cookies not showing up in your developer console.
@@ -63,3 +63,26 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
 });
+
+
+// we have to get the development to deployment
+const Sequelize = require('sequelize');
+require('dotenv').config();
+
+let sequelize;
+
+if (process.env.DB_URL) {
+  sequelize = new Sequelize(process.env.DB_URL);
+} else {
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: 'localhost',
+      dialect: 'postgres'
+    }
+  );
+}
+
+module.exports = sequelize;
