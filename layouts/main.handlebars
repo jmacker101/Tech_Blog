@@ -13,6 +13,7 @@
 <body>
   <header>
     <h1>The Tech Blog</h1>
+    {{newpost}}
   </header>
   <nav>
     <a href="/">Home</a>
@@ -26,5 +27,30 @@
     </div>
   </main>
 </body>
+<script>
+  const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
 
+const app = express();
+
+app.engine('handlebars', exphbs({
+    extname: 'handlebars',
+    partialsDir: [
+        path.join(__dirname, 'views/partials')
+    ]
+}));
+app.set('view engine', 'handlebars');
+
+{{!-- why is the > red what am i doing wrong question to ask for later i keep adding and taking away different things? --}}
+{{!-- keep reversing back to the original way it was to adapt it to my need in the main handlebar --}}
+
+app.get('/', (req, res) => {
+    res.render('layouts/main');
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+</script>
 </html>
