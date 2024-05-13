@@ -1,0 +1,42 @@
+{{!-- GETS all users existing blog post
+and the option to POST a new post --}}
+
+<div class="title">
+  <div class="post_text">
+    {{dish_name}}
+  </div>
+  <div class="user_id">
+    <p>
+      Description:
+      {{description}}
+    </p>
+    <p>
+      Guest:
+      {{guest_name}}
+    </p>
+    {{#if has_nuts}}
+      <p class="has-nuts">
+        Contains Nuts
+      </p>
+    {{/if}}
+  </div>
+</div>
+{{!-- example of what i could take away from this line of code down below --}}
+{{!-- const { BlogPost } = require('../models'); // Import the Sequelize model
+
+const dashboardController = {
+  getAllBlogPosts: async (req, res) => {
+    try {
+      // Fetch all blog posts from the database
+      const blogPosts = await BlogPost.findAll({ where: { userId: req.user.id } });
+
+      // Render the Handlebars template and pass the blog posts data
+      res.render('dashboard', { blogPosts });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error fetching blog posts');
+    }
+  }
+};
+
+module.exports = dashboardController; --}}
